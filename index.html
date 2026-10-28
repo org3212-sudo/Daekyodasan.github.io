@@ -9,51 +9,49 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --black:#000; --panel:#1d1d1f; --white:#f5f5f7; --gray:#86868b; --line:#424245;
-  --paper:#fff; --card:#f5f5f7; --ink:#1d1d1f;
-  color-scheme:dark; box-sizing:border-box;
+  --bg:#f5f5f7; --surface:#ffffff; --ink:#1d1d1f; --gray:#6e6e73; --soft:#86868b; --line:#d2d2d7; --nav:#1d1d1f;
+  color-scheme:light; box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 *,*::before,*::after{box-sizing:inherit}
-html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--black)}
-body{margin:0;background:var(--black);color:var(--white);
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);
   font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;line-height:1.5;letter-spacing:-.02em}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--nav);z-index:10}
 button,a{font:inherit;letter-spacing:inherit}
-:focus-visible{outline:3px solid #2997ff;outline-offset:3px}
-.screen{display:none;min-height:100vh;max-width:520px;margin:0 auto}
+:focus-visible{outline:3px solid #0071e3;outline-offset:3px}
+.screen{display:none;min-height:100vh;max-width:520px;margin:0 auto;background:var(--bg)}
 .screen.on{display:block}
 @media (prefers-reduced-motion:no-preference){.screen.on{animation:fade .35s ease}@keyframes fade{from{opacity:0}to{opacity:1}}}
 
-.bar{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;background:var(--black);color:var(--white)}
-.bar img{height:38px;width:auto;display:block}
-.bar span{font-size:.8rem;font-weight:500;opacity:.7}
+.bar{display:flex;justify-content:center;align-items:center;padding:11px 22px;background:var(--nav)}
+.bar img{height:34px;width:auto;display:block}
 
 /* 1 학년 선택 */
-.notice{background:var(--panel);color:#d2d2d7;font-size:.8rem;text-align:center;padding:11px 22px}
-.hero{text-align:center;padding:60px 24px 34px}
-.hero h1{font-size:2.5rem;font-weight:900;line-height:1.2;letter-spacing:-.045em;margin:0 0 12px;word-break:keep-all}
-.hero .sub{font-size:1.3rem;font-weight:500;margin:0 0 10px}
+.notice{background:var(--surface);color:var(--ink);font-size:.8rem;text-align:center;padding:12px 22px}
+.hero{padding:52px 24px 30px}
+.hero h1{font-size:2.6rem;font-weight:900;line-height:1.15;letter-spacing:-.05em;margin:0 0 14px;word-break:keep-all}
+.hero .sub{font-size:1.3rem;font-weight:700;margin:0 0 8px;letter-spacing:-.035em}
+.hero .sub span{color:var(--soft)}
 .hero .desc{font-size:.95rem;color:var(--gray);margin:0;line-height:1.6}
-.pick{padding:0 24px 30px}
-.pick h2{font-size:1.5rem;font-weight:900;letter-spacing:-.04em;margin:0 0 4px}
-.pick p{margin:0 0 18px;color:var(--gray);font-size:.92rem}
-.grades{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.grade{border:1.2px solid var(--line);background:var(--panel);color:var(--white);border-radius:20px;padding:22px 0 18px;cursor:pointer;text-align:center}
-.grade b{display:block;font-size:2.3rem;font-weight:900;line-height:1;letter-spacing:-.04em}
-.grade small{display:block;margin-top:6px;font-size:.85rem;color:var(--gray)}
-.grade:active{background:var(--white);color:#000}
-.grade:active small{color:#555}
-.call-sm{display:block;margin:6px 24px 50px;text-align:center;color:var(--white);font-size:.95rem;text-decoration:none;border:1.2px solid var(--white);border-radius:999px;padding:14px}
+.pick{padding:0 20px 56px}
+.pick h2{font-size:1.45rem;font-weight:900;letter-spacing:-.04em;margin:0 4px 16px}
+.pick h2 span{color:var(--soft)}
+.grades{display:flex;flex-direction:column;gap:10px}
+.grade{display:block;width:100%;border:0;background:var(--surface);color:var(--ink);border-radius:18px;padding:20px;cursor:pointer;text-align:center;
+  box-shadow:0 2px 10px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s}
+.grade b{font-size:1.3rem;font-weight:900;letter-spacing:-.04em}
+.grade:hover{box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.grade:active{transform:scale(.98);background:var(--ink);color:#fff}
 
 /* 2 문제 */
-#s-quiz{background:var(--paper);color:var(--ink)}
-.q{padding:24px 24px 40px}
-.q .meta{display:flex;justify-content:space-between;align-items:center;margin:0 0 6px;font-size:.88rem;color:var(--gray);font-weight:500}
+.q{padding:24px 20px 44px}
+.q .meta{display:flex;justify-content:space-between;align-items:center;margin:0 4px 6px;font-size:.88rem;color:var(--gray);font-weight:500}
 .q .back{background:none;border:0;color:var(--gray);padding:0;cursor:pointer;font-size:.88rem}
-.q h2{font-size:1.75rem;font-weight:900;line-height:1.25;letter-spacing:-.045em;margin:0 0 12px;word-break:keep-all}
-.q .text{font-size:1rem;line-height:1.65;margin:0 0 16px;word-break:keep-all}
-.fig{background:var(--card);border-radius:24px;padding:22px 14px;display:flex;justify-content:center;margin-bottom:18px;overflow-x:auto}
+.q h2{font-size:1.75rem;font-weight:900;line-height:1.25;letter-spacing:-.045em;margin:0 4px 12px;word-break:keep-all}
+.q .text{font-size:1rem;line-height:1.65;margin:0 4px 16px;word-break:keep-all}
+.fig{background:var(--surface);border-radius:24px;padding:22px 14px;display:flex;justify-content:center;margin-bottom:16px;overflow-x:auto}
 .fig svg{width:100%;height:auto;display:block}
 .fig .w300{max-width:300px}.fig .w340{max-width:340px}.fig .w240{max-width:240px}
 svg text{font-family:"Noto Sans KR",sans-serif;fill:#1d1d1f}
@@ -63,32 +61,29 @@ table.rps th,table.rps td{border:1px solid #1d1d1f;padding:8px 4px}
 table.rps thead th{background:#d2d2d7}
 table.rps tbody th{background:#e8e8ed;font-weight:500}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.opt{border:0;border-radius:16px;padding:18px 8px;background:var(--card);color:var(--ink);font-size:1.05rem;font-weight:700;cursor:pointer}
-.opt[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-.check{display:block;width:100%;margin-top:20px;border:0;border-radius:999px;padding:17px;background:var(--ink);color:var(--paper);font-size:1.05rem;font-weight:700;cursor:pointer}
+.opt{border:0;border-radius:16px;padding:18px 8px;background:var(--surface);color:var(--ink);font-size:1.05rem;font-weight:700;cursor:pointer}
+.opt[aria-pressed="true"]{background:var(--ink);color:#fff}
+.check{display:block;width:100%;margin-top:20px;border:0;border-radius:999px;padding:17px;background:var(--ink);color:#fff;font-size:1.05rem;font-weight:700;cursor:pointer}
 .check[disabled]{opacity:.25;cursor:default}
 
 /* 3 결과 */
 .verdict{padding:44px 24px 0}
-.verdict h2{font-size:2.5rem;font-weight:900;letter-spacing:-.045em;line-height:1.2;margin:0 0 6px}
+.verdict h2{font-size:2.5rem;font-weight:900;letter-spacing:-.05em;line-height:1.2;margin:0 0 6px}
 .verdict p{margin:0;color:var(--gray);font-size:1.05rem}
-.compare{padding:44px 0 34px;margin:0 24px;border-bottom:1px solid var(--line)}
-.compare .lab{margin:0 0 4px;color:var(--gray);font-size:.95rem;font-weight:500}
-.big{font-weight:900;line-height:1;letter-spacing:-.06em;margin:0;font-size:7rem;
-  background:linear-gradient(90deg,#fff,#48484a);-webkit-background-clip:text;background-clip:text;color:transparent}
-.compare .ask{margin:8px 0 0;font-size:1.75rem;font-weight:700;letter-spacing:-.04em}
-.claim{padding:34px 24px 44px;margin:0;font-size:2rem;font-weight:900;line-height:1.3;letter-spacing:-.045em;word-break:keep-all}
+.compare{margin:28px 20px 0;padding:28px 24px 30px;background:#000;color:#f5f5f7;border-radius:24px}
+.compare .lab{margin:0 0 6px;color:#a1a1a6;font-size:.95rem;font-weight:500}
+.big{font-weight:900;line-height:1;letter-spacing:-.06em;margin:0;font-size:6.5rem;
+  background:linear-gradient(90deg,#ffffff,#5a5a5e);-webkit-background-clip:text;background-clip:text;color:transparent}
+.compare .ask{margin:8px 0 0;font-size:1.6rem;font-weight:700;letter-spacing:-.04em}
+.claim{padding:36px 24px 32px;margin:0;font-size:1.95rem;font-weight:900;line-height:1.3;letter-spacing:-.05em;word-break:keep-all}
 .claim span{display:block}
-.claim .g1{background:linear-gradient(90deg,#d9f0ff,#f5f5f7);-webkit-background-clip:text;background-clip:text;color:transparent}
-.claim .g2{background:linear-gradient(90deg,#f5f5f7,#6e6e73);-webkit-background-clip:text;background-clip:text;color:transparent}
-.contact{background:var(--panel);padding:30px 22px 34px}
-.contact .who{margin:0 0 4px;color:var(--gray);font-size:.9rem}
-.contact .num{margin:0 0 20px;font-size:1.6rem;font-weight:700;letter-spacing:-.03em}
-.call{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:var(--white);color:#000;text-decoration:none;border-radius:22px;padding:24px 16px;font-size:1.35rem;font-weight:900;letter-spacing:-.03em}
+.claim .g2{color:var(--soft)}
+.contact{padding:0 20px}
+.call{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:var(--ink);color:#fff;text-decoration:none;border-radius:22px;padding:24px 16px;font-size:1.35rem;font-weight:900;letter-spacing:-.03em;box-shadow:0 8px 24px rgba(0,0,0,.12)}
 .call svg{width:28px;height:28px;flex:none}
 .call:active{transform:scale(.98)}
 .contact .note{margin:12px 0 0;text-align:center;font-size:.8rem;color:var(--gray)}
-.after{display:flex;justify-content:center;gap:28px;padding:26px 20px 44px}
+.after{display:flex;justify-content:center;gap:28px;padding:24px 20px 44px}
 .after button{background:none;border:0;color:var(--gray);font-size:.95rem;cursor:pointer;padding:4px}
 </style>
 </head>
@@ -99,15 +94,13 @@ table.rps tbody th{background:#e8e8ed;font-weight:500}
   <div class="notice">전단지 QR로 들어오셨나요? 아이와 함께 1분이면 끝납니다.</div>
   <div class="hero">
     <h1>우리 아이 구멍 찾기</h1>
-    <p class="sub">수학, 딱 한 문제.</p>
+    <p class="sub">수학, 딱 한 문제. <span>지금 바로 확인하세요.</span></p>
     <p class="desc">학년별 4지선다 1문제로<br>우리 아이가 놓치는 부분을 확인합니다.</p>
   </div>
   <div class="pick">
-    <h2>학년을 골라주세요</h2>
-    <p>초등학교 학년 기준입니다.</p>
+    <h2>학년을 골라주세요. <span>초등학교 기준.</span></h2>
     <div class="grades" id="grades"></div>
   </div>
-  <a class="call-sm" href="tel:0315530909">상담 문의 031-553-0909</a>
 </section>
 
 <section class="screen" id="s-quiz">
@@ -132,8 +125,6 @@ table.rps tbody th{background:#e8e8ed;font-weight:500}
   </div>
   <p class="claim" id="r-claim"></p>
   <div class="contact">
-    <p class="who">눈높이 다산지점 학습 상담</p>
-    <p class="num">031-553-0909</p>
     <a class="call" href="tel:0315530909">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 3.5h3.2l1.6 4.2-2.1 1.4a11 11 0 0 0 5.2 5.2l1.4-2.1 4.2 1.6V17a2.5 2.5 0 0 1-2.7 2.5C9.7 19 5 14.3 4.5 6.2A2.5 2.5 0 0 1 5 3.5Z" fill="currentColor"/></svg>
       지금 전화 상담하기
@@ -202,7 +193,7 @@ function show(k){for(var n in S)S[n].classList.toggle("on",n===k);window.scrollT
 var circ=["①","②","③","④"],g=null,picked=null,check=document.getElementById("check");
 
 var gb=document.getElementById("grades");
-for(var i=1;i<=6;i++){(function(n){var b=document.createElement("button");b.className="grade";b.innerHTML="<b>"+n+"</b><small>학년</small>";b.addEventListener("click",function(){start(n);});gb.appendChild(b);})(i);}
+for(var i=1;i<=6;i++){(function(n){var b=document.createElement("button");b.className="grade";b.innerHTML="<b>"+n+"학년</b>";b.addEventListener("click",function(){start(n);});gb.appendChild(b);})(i);}
 
 function start(n){
   g=n;picked=null;var q=Q[n];
@@ -222,8 +213,8 @@ check.addEventListener("click",function(){
   document.getElementById("r-lab").textContent=g+"학년 평균 정답률";
   document.getElementById("r-rate").textContent=q.rate+"%";
   document.getElementById("r-claim").innerHTML=ok
-    ?'<span class="g1">이제 상위 10%로.</span><span>다음 단계는</span><span class="g2">눈높이와 시작하세요.</span>'
-    :'<span class="g1">찾았습니다,</span><span>우리 아이의 구멍.</span><span class="g2">눈높이로 잡아보세요.</span>';
+    ?'<span>이제 상위 10%로.</span><span>다음 단계는</span><span class="g2">눈높이와 시작하세요.</span>'
+    :'<span>찾았습니다,</span><span>우리 아이의 구멍.</span><span class="g2">눈높이로 잡아보세요.</span>';
   show("result");
 });
 document.getElementById("q-back").addEventListener("click",function(){show("start");});
